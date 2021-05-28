@@ -71,12 +71,12 @@ void Employee :: putdata()
   	fi.open("Rate.dat" , ios::in | ios::binary);
   	fi.read((char*)&R, sizeof(R));
   
-  	net=(BP+CGIS+CGHS+(BP*(R.retDAr()/100))+(BP*(R.retHRAr()/100))+TA)-(BP*(R.retGPFr()/100));
+  	net = (BP+CGIS+CGHS+(BP*(R.retDAr()/100)) + (BP*(R.retHRAr()/100))+TA)  -  (BP*(R.retGPFr()/100));
   
-  	if(net*12>1000000) ITAXr=30;
-  	else if(net*12>500000) ITAXr=20;
- 	else if(net*12>250000) ITAXr=5;
-  	else ITAXr=0;
+  	if(net*12 > 1000000) ITAXr = 30;
+  	else if(net*12 > 500000) ITAXr = 20;
+ 	else if(net*12 > 250000) ITAXr = 5;
+  	else ITAXr = 0;
   
   	cout<<"\nEmployee number: "; cout<<empnum;
   	cout<<"\nName: "<<fname<<" "<<lname;
@@ -85,16 +85,16 @@ void Employee :: putdata()
   	cout<<"\nAddress: "; cout<<addr1<<" "<<addr2;
   	cout<<"\n================================================================================";
   	cout<<"\nCREDITS\t\t\t\t| DEBITS "; 
-  	cout<<"\nBasic Pay: "<<BP<<setw(29)<<"| Income Tax: "<<BP*(ITAXr/100);
-  	cout<<"\nCGIS:"<<CGIS<<setw(33)<<"| GPF at "<<R.retGPFr()<<"%: "<<BP*(R.retGPFr()/100);
+  	cout<<"\nBasic Pay: "<<BP<<setw(29)<<"| Income Tax: "<<BP * (ITAXr/100);
+  	cout<<"\nCGIS:"<<CGIS<<setw(33)<<"| GPF at "<<R.retGPFr()<<"%: "<<BP * (R.retGPFr()/100);
   	cout<<"\nCGHS:"<<CGHS<<setw(26)<<"|  ";
   	cout<<"\nTA:"<<TA<<setw(27)<<"| ";
-  	cout<<"\nHRA at "<<R.retHRAr()<<"% : "<<BP*(R.retHRAr()/100)<<setw(16)<<"| ";
-  	cout<<"\nDA at "<<R.retDAr()<<"% : "<<BP*(R.retDAr()/100)<<setw(19)<<"| ";
+  	cout<<"\nHRA at "<<R.retHRAr()<<"% : "<<BP * (R.retHRAr()/100)<<setw(16)<<"| ";
+  	cout<<"\nDA at "<<R.retDAr()<<"% : "<<BP * (R.retDAr()/100)<<setw(19)<<"| ";
   	cout<<"\n_______________________________________________________________________________";
-  	cout<<"\nTotal Credits: Rs"<<CGIS+CGHS+(BP*(R.retDAr()/100))+(BP*(R.retHRAr()/100))+TA<<setw(28)<<"| Total Debits: Rs"<<BP*(ITAXr/100)+(BP*(R.retGPFr()/100));
+  	cout<<"\nTotal Credits: Rs"<<CGIS + CGHS + (BP*(R.retDAr()/100)) + (BP*(R.retHRAr()/100)) + TA<<setw(28)<<"| Total Debits: Rs"<<BP*(ITAXr/100) + (BP*(R.retGPFr()/100));
   	cout<<"\n_______________________________________________________________________________";
-  	cout<<"\nNet salary= Rs"<<net-BP*(ITAXr/100)<<endl;
+  	cout<<"\nNet salary= Rs"<<net - BP*(ITAXr/100)<<endl;
 
   	fi.close();
 } 
@@ -107,11 +107,11 @@ void Create()
 	fstream foE, fR;
   	foE.open("Employee.dat" , ios::out | ios::binary);
   	fR.open("Rate.dat" , ios::out | ios::binary);
-  	int n, i;
+  	int n;
   	cout<<"\nEnter the number of employees you want to write(minimum 10): "; cin>>n;
-  	cout<<"\nEnter the employee number in ascending order\n";  getch();
+  	cout<<"\nEnter the details in ascending order wrt Employee Number\n";  getch();
   
-  	for(i=0;i<n;i++)
+  	for(int i=0; i<n; i++)
   	{ 
 	  	cout<<"\nEnter the details of employee "<<i+1;
 	   	e1.getdata();
@@ -131,7 +131,7 @@ void Create()
 void InsertRec()
 { 
 	fstream fi, fo;
-  	char last='y';
+  	char last = 'y';
   	fi.open("Employee.dat" , ios::in | ios::binary);
   	fo.open("Temp.dat" , ios::out | ios::binary);
 
@@ -150,7 +150,8 @@ void InsertRec()
 			fo.write((char*)&emp, sizeof(emp));
 	}
 
-  	if(last=='y') fo.write((char*)&e1, sizeof(e1));
+  	if(last == 'y') 
+	  	fo.write((char*)&e1, sizeof(e1));
   	else if(!fi.eof())
 	{ 
 		while(fi.read((char*)&emp, sizeof(emp)))
@@ -171,17 +172,18 @@ void ModifyRec()
 { 
 	fstream file;
   	file.open("Employee.dat" , ios::in | ios::out | ios::binary);
-  	int eno, found=0; long pos;
+  	int eno, found = 0; 
+	long pos;
 
-  	cout<<"\nEnter the Employee number of the employee whose record you want to modify: ";
+  	cout<<"\nEnter the Employee number of the employee whose record you wish to modify: ";
   	cin>>eno;
 
   	while(!file.eof())
 	{ 
-		pos=file.tellg();
+		pos = file.tellg();
 		file.read((char*)&emp, sizeof(emp));
 
-		if(eno==emp.reteno())
+		if(eno == emp.reteno())
 		{ 
 			found++;
 			cout<<"\nThe employee's ORIGINAL details\n\n";
@@ -195,8 +197,10 @@ void ModifyRec()
 		}
 	}
 
-  	if(found==0) cout<<"\nNo matching record found...";
-  	else         cout<<"\nDetails of the Employee are modified."; 
+  	if(found == 0) 
+	  	cout<<"\nNo matching record found...";
+  	else         
+	  	cout<<"\nDetails of the Employee are modified."; 
   
   	file.close();
 }
@@ -208,7 +212,7 @@ void DelRec()
 	fstream fi, fo;
   	fi.open("Employee.dat" , ios::in | ios::binary);
   	fo.open("Temp.dat" , ios::out | ios::binary);
-  	int found=0, eno, ans;
+  	int found = 0, eno, ans;
 
   	cout<<"\nEnter the Employee Number of the employee whose record is to be deleted:";
   	cin>>eno;
@@ -221,16 +225,17 @@ void DelRec()
 			cin>>ans;
 			found++;
 
-			if(ans==0) 
+			if(ans == 0) 
 				fo.write((char*)&emp, sizeof(emp));
-
 		}
 		else 
 			fo.write((char*)&emp, sizeof(emp));
 	}
 
-  	if(found==0)  cout<<"\nNo matching Record found...";
-  	else          cout<<"\nRecord of Employee deleted...";
+  	if(found == 0)  
+	  	cout<<"\nNo matching Record found...";
+  	else          
+	  	cout<<"\nRecord of Employee deleted...";
 
   	fi.close();  
 	fo.close();
@@ -247,11 +252,13 @@ void ModifyRates()
   	file.open("Rate.dat" , ios::in | ios::out | ios::binary);
   	long pos;
   
-  	pos=file.tellg();
+  	pos = file.tellg();
   	file.read((char*)&R, sizeof(R));
+  	
   	cout<<"\n\nThe old rates are...";
   	R.putRate();
-  	file.seekg(pos);
+  	
+	file.seekg(pos);
   	cout<<"\n\nEnter the new Rates...";
   	R.getRate();
   	file.write((char*)&R, sizeof(R));
@@ -267,7 +274,7 @@ void GenOneRec()
 	fstream fi, fo;
   	fi.open("Employee.dat" , ios::in | ios::binary);
  
-  	int found=0, eno, ans;
+  	int found = 0, eno, ans;
   
   	cout<<"\nEnter the Employee Number of the employee whose Payslip is to be generated: ";
   	cin>>eno;
@@ -287,7 +294,7 @@ void GenOneRec()
 		}
     }
   
-  	if(found==0)  
+  	if(found == 0)  
 		cout<<"\nNo matching Record found...";
 
   	fi.close(); 
@@ -296,7 +303,7 @@ void GenOneRec()
  
 int main()
 { 
-	int op=1, choice;
+	int op = 1, choice;
 
   	if(!ifstream("Employee.dat"))	  
 		Create();
