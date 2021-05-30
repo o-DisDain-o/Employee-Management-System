@@ -83,7 +83,7 @@ void Employee :: putdata()
   	cout<<"\nDate of Birth : "; cout<<dob;
   	cout<<"\nDate of Joining : "; cout<<doj;
   	cout<<"\nAddress: "; cout<<addr1<<" "<<addr2;
-  	cout<<"\n================================================================================";
+  	cout<<"\n=====================================================================================";
   	cout<<"\nCREDITS\t\t\t\t| DEBITS "; 
   	cout<<"\nBasic Pay: "<<BP<<setw(29)<<"| Income Tax: "<<BP * (ITAXr/100);
   	cout<<"\nCGIS:"<<CGIS<<setw(33)<<"| GPF at "<<R.retGPFr()<<"%: "<<BP * (R.retGPFr()/100);
@@ -91,9 +91,9 @@ void Employee :: putdata()
   	cout<<"\nTA:"<<TA<<setw(27)<<"| ";
   	cout<<"\nHRA at "<<R.retHRAr()<<"% : "<<BP * (R.retHRAr()/100)<<setw(16)<<"| ";
   	cout<<"\nDA at "<<R.retDAr()<<"% : "<<BP * (R.retDAr()/100)<<setw(19)<<"| ";
-  	cout<<"\n_______________________________________________________________________________";
+  	cout<<"\n____________________________________________________________________________________";
   	cout<<"\nTotal Credits: Rs"<<CGIS + CGHS + (BP*(R.retDAr()/100)) + (BP*(R.retHRAr()/100)) + TA<<setw(28)<<"| Total Debits: Rs"<<BP*(ITAXr/100) + (BP*(R.retGPFr()/100));
-  	cout<<"\n_______________________________________________________________________________";
+  	cout<<"\n____________________________________________________________________________________";
   	cout<<"\nNet salary= Rs"<<net - BP*(ITAXr/100)<<endl;
 
   	fi.close();
@@ -285,10 +285,10 @@ void GenOneRec()
        
        	if(emp.reteno() == eno)
         { 
-			cout<<"\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n";
+			cout<<"\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n";
 		   	cout<<"\t\t\t\tDoofenshmirtz Evil Inc\n\t\t\t  9297 Polly Parkway, Tri-State Area\n\t\t\t             Delhi-110034";
            	emp.putdata();
-           	cout<<"\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n";
+           	cout<<"\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n";
 		   	getch();
            	found++;
 		}
