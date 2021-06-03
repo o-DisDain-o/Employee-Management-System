@@ -83,7 +83,7 @@ void Employee :: putdata()
   	cout<<"\nDate of Birth : "; cout<<dob;
   	cout<<"\nDate of Joining : "; cout<<doj;
   	cout<<"\nAddress: "; cout<<addr1<<" "<<addr2;
-  	cout<<"\n=====================================================================================";
+  	cout<<"\n====================================================================================";
   	cout<<"\nCREDITS\t\t\t\t| DEBITS "; 
   	cout<<"\nBasic Pay: "<<BP<<setw(29)<<"| Income Tax: "<<BP * (ITAXr/100);
   	cout<<"\nCGIS:"<<CGIS<<setw(33)<<"| GPF at "<<R.retGPFr()<<"%: "<<BP * (R.retGPFr()/100);
